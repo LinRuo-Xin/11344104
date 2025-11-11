@@ -1,0 +1,753 @@
+/*1. 變數與基礎設定 (Variables & Base)*/
+:root {
+  --primary-light: #f7e9d8;
+  --primary-dark: #c5af96;
+  --accent-color: #897360;
+  --text-dark: #3b2f2f;
+  --text-light: #5a4a3a;
+  --border-radius: 16px;
+  --shadow-base: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Noto Sans TC", "微軟正黑體", sans-serif;
+  color: var(--text-dark);
+  background-color: var(--primary-light);
+  line-height: 1.6;
+}
+
+/*2. 通用佈局與導覽列 (General Layout & Topbar)*/
+.section {
+  max-width: 1100px;
+  margin: 120px auto 80px;
+  padding: 40px;
+  background: var(--primary-dark);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-base);
+}
+
+/* 頂部導覽列 */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: var(--primary-dark);
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 40px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 100;
+}
+
+.topbar h1 { margin: 0; font-size: 22px; }
+
+.tabs a {
+  margin-left: 20px;
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.tabs a:hover { color: var(--accent-color); }
+
+/*3. ABOUT 區塊 (個人資訊)*/
+section.about {
+  display: flex; align-items: center;
+  gap: 40px; padding: 50px;
+}
+
+.profile-photo {
+  width: 280px; height: 280px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  border: 4px solid white;
+}
+
+.name {
+  margin: 0 0 20px 0;
+  font-size: 42px; font-weight: 800;
+}
+
+.info {
+  flex: 1;
+  display: flex; flex-direction: column;
+  gap: 30px;
+}
+
+.info-row {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 40px;
+}
+
+.info-row .center-info {
+  flex: 1;
+  display: flex; flex-direction: column;
+  gap: 12px; padding-right: 40px;
+}
+
+.info-row .center-info p {
+  font-size: 20px; line-height: 1.6;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(137, 115, 96, 0.2);
+}
+
+.info-row .center-info p:last-child { border-bottom: none; }
+
+/*對 .contact 調整或直接使用 ul */
+.contact { 
+    text-align: right; 
+    min-width: 280px;
+}
+
+.contact li {
+  margin-bottom: 16px;
+  font-size: 18px;
+  display: flex; align-items: center; justify-content: flex-end;
+  gap: 12px; padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.contact a {
+  color: var(--text-dark); text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+
+.contact li:hover { background-color: rgba(255, 255, 255, 0.3); }
+
+.contact i {
+  color: var(--accent-color);
+  width: 20px; text-align: center; font-size: 18px;
+}
+
+/*4. INTRO 區塊 (自我介紹) */
+.slogan-section { text-align: center; margin-bottom: 40px; }
+
+.slogan {
+  font-size: 24px; font-weight: 600;
+  color: #5d4037; font-style: italic; line-height: 1.6;
+  padding: 20px 0;
+  border-bottom: 2px solid #5d4037;
+  display: inline-block;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.intro-container {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 20px; margin-top: 30px;
+}
+
+.intro-card {
+  background: linear-gradient(135deg, var(--primary-light), #fff);
+  padding: 25px 20px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  text-align: center;
+  position: relative; overflow: hidden;
+  min-height: 280px;
+  display: flex; flex-direction: column; justify-content: flex-start;
+}
+
+.intro-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), var(--primary-dark));
+}
+
+.intro-card:hover {
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.card-icon { font-size: 36px; margin-bottom: 15px; }
+
+.intro-card h4 {
+  font-size: 18px; font-weight: 700;
+  color: var(--accent-color); margin-bottom: 15px;
+}
+
+.intro-card p {
+  font-size: 14px; line-height: 1.6;
+  color: var(--text-light); text-align: left;
+  flex-grow: 1; display: flex; align-items: center;
+}
+
+/*5. SKILLS 區塊 (專業技能)*/
+.skills-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 25px; margin-top: 40px;
+  align-items: start;
+}
+
+.skill-item {
+  background: var(--primary-light);
+  border-radius: var(--border-radius);
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  gap: 20px; padding: 30px 20px;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  height: 100%;
+}
+
+.skill {
+  position: relative;
+  width: 120px; height: 120px;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center;
+}
+
+.skill-circle {
+  position: relative;
+  width: 100px; height: 100px; border-radius: 50%;
+  background: conic-gradient(
+    var(--accent-color) calc(var(--percent, 0) * 1%), 
+    var(--primary-light) 0%
+  );
+  display: flex; justify-content: center; align-items: center;
+}
+
+.skill-circle::before {
+  content: '';
+  position: absolute;
+  width: 75px; height: 75px; border-radius: 50%;
+  background: var(--primary-dark);
+}
+
+.percent-text {
+  position: relative; z-index: 2;
+  font-size: 16px; font-weight: 700;
+  color: var(--text-dark);
+}
+
+.skill-name {
+  margin-top: 8px;
+  font-size: 13px; font-weight: 600;
+  color: var(--text-dark); text-align: center;
+}
+
+.skill-text { max-width: 100%; }
+
+.skill-text h4 {
+  color: var(--accent-color);
+  font-size: 16px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+.skill-text p {
+  font-size: 13px; line-height: 1.5;
+  color: var(--text-light); text-align: center;
+}
+
+/*6. EXPERIENCE 區塊 (成長歷程) */
+.experience-content { min-height: 400px; margin: 40px 0; }
+.experience-item { display: none; }
+.experience-item.active { display: block; }
+
+.experience-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 30px; padding-bottom: 15px;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.experience-header h4 {
+  color: var(--accent-color); font-size: 24px;
+}
+
+.experience-year {
+  background: var(--accent-color); color: white;
+  padding: 5px 15px; border-radius: 20px;
+  font-size: 14px; font-weight: 600;
+}
+
+.experience-body {
+  display: grid; grid-template-columns: 1.5fr 1fr;
+  gap: 30px; align-items: start;
+}
+
+.experience-text h5 {
+  color: var(--text-dark); margin-bottom: 20px; font-size: 18px;
+}
+
+.experience-text ul { padding-left: 20px; margin-bottom: 25px; }
+
+.experience-text li {
+  margin-bottom: 8px; color: var(--text-light); line-height: 1.5;
+}
+
+.skills-gained {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+
+.skill-tag {
+  background: var(--primary-light); color: var(--accent-color);
+  padding: 5px 12px; border-radius: 15px;
+  font-size: 12px; font-weight: 600;
+  border: 1px solid var(--accent-color);
+}
+
+/*時間軸 (Timeline)*/
+.timeline-main { margin: 50px 0; }
+
+.timeline-track {
+  position: relative; height: 120px;
+  margin: 0 50px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.timeline-line {
+  position: absolute; top: 60px; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), var(--primary-dark));
+  z-index: 1;
+}
+
+.timeline-point {
+  position: relative; text-align: center; cursor: pointer; z-index: 2;
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center;
+}
+
+.point-icon {
+  width: 50px; height: 50px;
+  background: var(--primary-light);
+  border: 3px solid var(--accent-color); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin: 0 auto 8px;
+}
+
+.timeline-point.active .point-icon { background: var(--accent-color); color: white; }
+
+.point-label {
+  font-size: 12px; font-weight: 600;
+  color: var(--text-dark); white-space: nowrap;
+}
+
+/*高中總成就 (Achievement Showcase)*/
+.achievement-showcase {
+  display: flex; flex-direction: column; gap: 25px; align-items: center;
+}
+
+.trophy-badge {
+  display: flex; align-items: center; gap: 15px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f7e9d8, #e8d9c5);
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  border: 2px solid var(--accent-color);
+}
+
+.trophy-icon {
+  font-size: 50px;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+}
+
+.trophy-text { text-align: center; }
+
+.rank {
+  font-size: 24px; font-weight: 800;
+  color: var(--accent-color); margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 14px; color: var(--text-light); font-weight: 600;
+}
+
+.leader-roles {
+  display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+}
+
+.role-item {
+  background: var(--primary-light);
+  border-radius: var(--border-radius);
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px; padding: 15px; min-width: 80px;
+}
+
+.role-icon { font-size: 24px; }
+
+.role-item span {
+  font-size: 12px; font-weight: 600;
+  color: var(--text-dark); text-align: center;
+}
+
+/* 獎狀圖庫 (Certificate Gallery)*/
+.achievement-showcase .certificate-gallery {
+  width: 100%; max-width: 300px; text-align: center;
+}
+
+.certificate-main {
+  width: 100%; height: 200px;
+  border-radius: 10px; margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--primary-dark);
+  border: 2px solid var(--accent-color);
+  cursor: pointer; position: relative;
+}
+
+.certificate-main img {
+  width: 100%; height: 100%;
+  object-fit: contain; background: white;
+}
+
+.certificate-label {
+  color: var(--text-light); font-size: 13px; font-weight: 600;
+  margin-top: 8px;
+}
+
+.certificate-label i {
+  margin-right: 5px; color: var(--accent-color);
+}
+
+/* 獎狀放大鏡 (Zoom Modal) */
+.certificate-zoom {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: none; justify-content: center; align-items: center;
+  z-index: 1000; cursor: pointer;
+}
+
+.certificate-zoom.active { display: flex; }
+
+.zoom-content { max-width: 90%; max-height: 90%; position: relative; cursor: default; }
+
+.zoom-content img {
+  width: 100%; height: 100%;
+  object-fit: contain; border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.zoom-close {
+  position: absolute; top: -40px; right: 0;
+  background: var(--accent-color); color: white;
+  border: none; border-radius: 50%;
+  width: 30px; height: 30px;
+  cursor: pointer; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.zoom-close:hover { background: var(--text-dark); }
+
+
+/*校刊社經歷 (Magazine Gallery)*/
+.magazine-gallery { width: 100%; max-width: 400px; }
+
+.gallery-main {
+  width: 100%; height: 400px;
+  border-radius: 10px; margin-bottom: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--primary-dark);
+}
+
+.gallery-main img {
+  width: 100%; height: 100%;
+  object-fit: contain; background: white;
+}
+
+.gallery-controls {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 15px;
+}
+
+.gallery-prev,.gallery-next {
+  padding: 8px 16px;
+  background: var(--accent-color); color: white;
+  border: none; border-radius: 5px;
+  cursor: pointer; font-size: 14px; font-weight: 600;
+}
+
+.gallery-prev:hover,.gallery-next:hover { background: var(--text-dark); }
+
+.gallery-prev:disabled,.gallery-next:disabled {
+  background: var(--text-light); cursor: not-allowed; transform: none;
+}
+
+.gallery-counter { color: var(--text-light); font-size: 14px; font-weight: 600; }
+
+
+/*服務學習專案 (Service Learning)*/
+.project-intro { margin-bottom: 25px; }
+
+.team-info { display: flex; gap: 10px; margin-top: 10px; }
+
+.team-badge { display: none; }
+
+.date-badge {
+  background: var(--accent-color); color: white;
+  padding: 6px 14px; border-radius: 15px;
+  font-size: 12px; font-weight: 600;
+}
+
+.project-details {
+  display: flex; flex-direction: column; gap: 20px;
+}
+
+.detail-card {
+  display: flex; align-items: flex-start; gap: 15px;
+  padding: 20px;
+  background: var(--primary-light);
+  border-radius: 12px;
+  border-left: 4px solid var(--accent-color);
+}
+
+.detail-icon { font-size: 24px; flex-shrink: 0; }
+
+.detail-content h6 {
+  color: var(--accent-color); font-size: 16px; font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.detail-content p {
+  color: var(--text-light); font-size: 14px; line-height: 1.5;
+}
+
+.video-stats { margin-top: 8px; }
+
+.stat-highlight {
+  background: #ff6b6b; color: white;
+  padding: 4px 8px; border-radius: 8px;
+  font-size: 12px; font-weight: 600;
+}
+
+.service-learning-media {
+  display: flex; flex-direction: column; gap: 25px; height: 100%;
+}
+
+.media-section h6 {
+  color: var(--accent-color); font-size: 16px; font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.video-container {
+  position: relative;
+  border-radius: 12px; overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  background: var(--primary-dark);
+}
+
+.video-container video {
+  width: 100%; height: 180px; object-fit: cover;
+}
+
+.video-stats-overlay {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(0,0,0,0.7); color: white;
+  padding: 5px 10px; border-radius: 15px;
+  font-size: 12px;
+  display: flex; align-items: center; gap: 5px;
+}
+
+/* PDF 檔案下載 */
+.file-downloads { display: flex; flex-direction: column; gap: 12px; }
+
+.file-download {
+  display: flex; align-items: center; gap: 15px;
+  padding: 15px;
+  background: var(--primary-light);
+  border-radius: 10px;
+  text-decoration: none; color: var(--text-dark);
+  border: 1px solid transparent;
+}
+
+.file-download:hover { background: white; border-color: var(--accent-color); }
+
+.file-icon { font-size: 24px; color: #f40f02; }
+
+.file-info { flex: 1; }
+
+.file-name {
+  font-weight: 600; font-size: 14px; margin-bottom: 4px;
+}
+
+.file-desc { font-size: 12px; color: var(--text-light); }
+
+.download-icon { color: var(--accent-color); }
+
+/* 影響力網格 */
+.impact-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+}
+
+.impact-item {
+  text-align: center; padding: 20px 10px;
+  background: var(--primary-light);
+  border-radius: 10px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+}
+
+.impact-number {
+  font-size: 24px; font-weight: 800;
+  color: var(--accent-color); margin-bottom: 5px;
+}
+
+.impact-label {
+  font-size: 12px; color: var(--text-light); font-weight: 600;
+}
+
+/*打工經歷 (Care Experience)*/
+.care-experience {
+  grid-template-columns: 1.5fr 1fr; gap: 30px;
+}
+
+.care-skills { display: flex; flex-direction: column; gap: 20px; margin-bottom: 25px; }
+
+.care-skill-item {
+  display: flex; align-items: flex-start; gap: 15px;
+  padding: 20px;
+  background: var(--primary-light);
+  border-radius: 12px;
+  border-left: 4px solid var(--accent-color);
+}
+
+.care-skill-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+
+.care-skill-content h6 {
+  color: var(--accent-color); font-size: 16px; font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.care-skill-content p {
+  font-size: 14px; line-height: 1.5; color: var(--text-light);
+}
+
+.learning-outcomes {
+  background: linear-gradient(135deg, var(--primary-light), #fff);
+  padding: 20px; border-radius: 12px;
+  border: 1px solid var(--accent-color);
+}
+
+.learning-outcomes h6 {
+  color: var(--accent-color); font-size: 16px; font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.outcome-grid { display: flex; flex-direction: column; gap: 12px; }
+
+.outcome-item { display: flex; align-items: center; gap: 12px; }
+
+.outcome-icon { font-size: 18px; flex-shrink: 0; }
+
+.outcome-text {
+  font-size: 14px; line-height: 1.4; color: var(--text-light);
+}
+
+.care-gallery {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;
+}
+
+.care-photo {
+  width: 100%; height: 120px;
+  border-radius: 10px; object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 2px solid var(--accent-color);
+  transform: translateY(50px);
+}
+
+.care-stats {
+  display: flex; justify-content: center; gap: 30px; margin: 20px 0;
+}
+
+.care-stat { text-align: center; }
+
+.stat-value {
+  font-size: 24px; font-weight: 800;
+  color: var(--accent-color); margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 12px; color: var(--text-light); font-weight: 600;
+}
+
+.care-quote {
+  background: var(--primary-light); padding: 20px;
+  border-radius: 12px;
+  border-left: 4px solid var(--accent-color); margin-top: 20px;
+  transform: translateY(50px);
+}
+
+.care-quote p {
+  font-style: italic; line-height: 1.5; color: var(--text-light);
+  font-size: 14px; text-align: center;
+}
+
+.skill-badges {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px;
+}
+
+.skill-badge {
+  background: var(--accent-color); color: white;
+  padding: 8px 15px; border-radius: 20px;
+  font-size: 12px; font-weight: 600;
+  transform: translateY(50px);
+}
+
+/*7. 頁尾 (Footer) */
+.footer-note {
+  text-align: center; padding: 30px;
+  font-size: 14px; color: var(--accent-color);
+}
+
+/* 8. 響應式設計 (Responsive Design) */
+@media (max-width: 1200px) {
+  .intro-container { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+  .skills-row { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+}
+
+@media (max-width: 968px) {
+  .section { padding: 30px; }
+  section.about { flex-direction: column; text-align: center; gap: 30px; padding: 40px 30px; }
+  .info-row { flex-direction: column; gap: 30px; }
+  
+  
+  .contact { 
+    text-align: center; 
+    min-width: unset; /* 避免在手機版影響佈局 */
+  }
+  .contact li { justify-content: center; }
+  .profile-photo { width: 240px; height: 240px; }
+  .experience-body, .care-experience { grid-template-columns: 1fr; gap: 30px; }
+}
+
+@media (max-width: 768px) {
+  .section { padding: 25px 20px; margin: 80px auto 50px; }
+  .topbar { padding: 10px 20px; }
+  .intro-container { grid-template-columns: 1fr; }
+  .slogan { font-size: 20px; }
+  .intro-card p { text-align: center; }
+  .skills-row { grid-template-columns: 1fr; max-width: 400px; margin: 40px auto; }
+  .gallery-main { height: 350px; }
+  .timeline-track { margin: 0 20px; }
+  .gallery-controls { flex-direction: column; gap: 10px; }
+  .detail-card { flex-direction: column; text-align: center; gap: 10px; }
+  .detail-icon { margin-bottom: -5px; }
+  .team-info { justify-content: center; }
+  .video-container video { height: 150px; }
+  .care-skill-item { flex-direction: column; text-align: center; gap: 12px; }
+  .care-stats { flex-direction: column; gap: 15px; }
+  .care-gallery { grid-template-columns: 1fr; }
+  .leader-roles { gap: 15px; }
+}
+
+@media (max-width: 480px) {
+  .name { font-size: 36px; }
+  .slogan { font-size: 18px; }
+  .profile-photo { width: 200px; height: 200px; }
+  .gallery-main { height: 300px; }
+  .timeline-point { transform: scale(0.9); }
+  .timeline-point.active { transform: scale(1); }
+  .trophy-badge { flex-direction: column; text-align: center; }
+  .role-item { min-width: 70px; padding: 12px; }
+  .impact-grid { gap: 10px; }
+  .impact-item { padding: 15px 8px; }
+  .impact-number { font-size: 20px; }
+  .care-photo { height: 100px; }
+}
